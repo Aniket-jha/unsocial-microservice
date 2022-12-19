@@ -9,7 +9,11 @@
     "prettier:fix": "prettier --write src/**/*.ts",
     "start:dev": "nodemon src/index.ts",
     "start": "echo starting prod server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
+  },
+  "jest":{
+    "testEnvironment":"node",
+    "preset":"ts-jest"
   },
   "keywords": [],
   "author": "Aniket Jha",
@@ -23,6 +27,7 @@
   "devDependencies": {
     "@types/express": "^4.17.15",
     "@types/node": "^18.11.17",
+    "@types/supertest": "^2.0.12",
     "eslint": "^8.30.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript-prettier": "^5.0.0",
@@ -34,14 +39,16 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.3"
   },
-  "lint-staged":{
-    "src/**/*.ts":[
-      "npm run prettier","npm run lint","git add"
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run prettier:fix",
+      "npm run lint",
+      "git add"
     ]
   },
-  "husky":{
-    "hooks":{
-      "pre-commit":"lint-staged"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   }
 }
